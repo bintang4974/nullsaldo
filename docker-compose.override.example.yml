@@ -1,0 +1,33 @@
+# Override configuration for development
+# This file is loaded automatically by docker-compose and ignored by git
+# Copy this to docker-compose.override.yml if you need custom settings
+
+version: '3.8'
+
+services:
+  app:
+    # For development - mount source code for live editing
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/vendor
+    environment:
+      APP_DEBUG: "true"
+      APP_ENV: "local"
+
+  mysql:
+    # Expose MySQL for local tools (optional)
+    # ports:
+    #   - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  # Mailpit for email testing (optional)
+  # mailpit:
+  #   image: axllent/mailpit:latest
+  #   container_name: nullsaldo-mailpit
+  #   ports:
+  #     - "1025:1025"
+  #     - "8025:8025"
+  #   networks:
+  #     - nullsaldo-network

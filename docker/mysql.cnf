@@ -1,0 +1,30 @@
+[mysqldump]
+quick
+quote-names
+max_allowed_packet = 20M
+
+[mysql]
+# no-auto-rehash
+
+[mysqld]
+# MySQL Server configuration
+max_allowed_packet = 20M
+default-storage-engine = InnoDB
+
+# Character set
+character_set_server = utf8mb4
+collation_server = utf8mb4_unicode_ci
+character_set_client = utf8mb4
+
+# Connection timeout
+wait_timeout = 28800
+max_connections = 1000
+
+# Binlog
+binlog_format = row
+log_bin_trust_function_creators = 1
+
+# Performance
+slow_query_log = 1
+slow_query_log_file = /var/log/mysql/slow.log
+long_query_time = 2

@@ -16,6 +16,11 @@ Route::get('/', function () {
     return redirect()->route('login');
 });
 
+// Health check route for Docker
+Route::get('/health', function () {
+    return response()->json(['status' => 'ok', 'timestamp' => now()], 200);
+});
+
 // Authenticated routes
 Route::middleware(['auth', 'verified'])->group(function () {
 
